@@ -1,0 +1,256 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Donation website &mdash; Website Donation</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="author" content="Free-Template.co"/>
+    <link rel="shortcut icon" th:href="@{/ftco-32x32.png}">
+    <link rel="stylesheet" th:href="@{/user/assets/css/custom-bs.css}">
+    <link rel="stylesheet" th:href="@{/user/assets/css/jquery.fancybox.min.css}">
+    <link rel="stylesheet" th:href="@{/user/assets/css/bootstrap-select.min.css}">
+    <link rel="stylesheet" th:href="@{/user/assets/fonts/icomoon/style.css}">
+    <link rel="stylesheet" th:href="@{/user/assets/fonts/line-icons/style.css}">
+    <link rel="stylesheet" th:href="@{/user/assets/css/owl.carousel.min.css}">
+    <link rel="stylesheet" th:href="@{/user/assets/css/animate.min.css}">
+
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" th:href="@{/user/assets/css/style.css}">
+    <script th:src="@{/user/assets/js/jquery.min.js}"></script>
+    <script th:src="@{/user/assets/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/user/assets/js/isotope.pkgd.min.js}"></script>
+    <script th:src="@{/user/assets/js/stickyfill.min.js}"></script>
+    <script th:src="@{/user/assets/js/jquery.fancybox.min.js}"></script>
+    <script th:src="@{/user/assets/js/jquery.easing.1.3.js}"></script>
+    <script th:src="@{/user/assets/js/jquery.waypoints.min.js}"></script>
+    <script th:src="@{/user/assets/js/jquery.animateNumber.min.js}"></script>
+    <script th:src="@{/user/assets/js/owl.carousel.min.js}"></script>
+    <script th:src="@{/user/assets/js/bootstrap-select.min.js}"></script>
+    <script th:src="@{/user/assets/js/custom.js}"></script>
+    <script th:src="@{/user/assets/js/donation-table.js}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+    <script th:src="@{/user/assets/js/donation-table.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+    <script th:src="@{/admin1/assets/js/datatables-simple-demo.js}"></script>
+</head>
+<body id="top">
+<div id="overlayer"></div>
+<div class="loader">
+    <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<div th:if="${msg}" class="toast" data-delay="1000"
+     style="position:fixed; top: 100PX; left: 40PX;z-index: 2000;width: 300px">
+
+    <script>
+        // swal({
+        //     title: 'Donate Successfully!',
+        //     /* text: 'Redirecting...', */
+        //     icon: 'success',
+        //     timer: 3000,
+        //     buttons: true,
+        //     type: 'success'
+        // })
+
+    </script>
+</div>
+
+<div class="site-wrap">
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+                <span class="icon-close2 js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div> <!-- .site-mobile-menu -->
+
+    <!-- NAVBAR -->
+    <header class="site-navbar mt-3">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="site-logo col-6"><a th:href="@{/home}">Website Quyên Góp</a></div>
+            </div>
+
+            <div class="right-cta-menu text-right d-flex aligin-items-center col-6">
+                <div class="ml-auto">
+                    <a th:if="${session.user}" th:text="${session.user.fullName}"
+                       th:href="${'/user/info/'}+${session.user.id} "
+                       class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"></span>Post a Job</a>
+                    <a href="/user/logout" th:if="${session.user}"
+                       class="btn btn-primary border-width-2 d-none d-lg-inline-block">Log Out</a>
+                    <a th:href="@{/showMyLoginPage}"
+                       class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span
+                            class="mr-2 icon-lock_outline"></span>Log Out</a>
+                </div>
+                <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span
+                        class="icon-menu h3 m-0 p-0 mt-2"></span></a>
+            </div>
+            <!--            <li><a class="dropdown-item" th:href="@{/showMyLoginPage}">Logout</a></li>-->
+        </div>
+    </header>
+
+    <!-- HOME -->
+    <section class="section-hero overlay inner-page bg-image"
+             th:style="'background-image: url(\'' + @{/user/assets/images/donate-poster.jpg} + '\')'" id="home-section">
+        <!--        style="background-image: url('images/hero_1.jpg');"-->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <h1 class="text-white font-weight-bold">Danh sách các đợt quyên góp</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="site-section">
+        <div class="container">
+            <div class="row mb-5 justify-content-center">
+                <div class="col-md-7 text-center">
+                    <h2 class="section-title mb-2">Các đợt quyên góp</h2>
+                </div>
+            </div>
+
+            <ul class="job-listings mb-5">
+                <input type="hidden" th:value="${donations.size()}" id="dodai">
+                <!--                <input type="hidden" th:name="donationId" th:text="${donationId}" />-->
+                <li th:each="donation : ${donations}" style="margin-bottom: 20px"
+                    class="job-listing d-sm-flex pb-3 pb-sm-0 align-items-center">
+                    <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
+                        <div class="job-listing-position custom-width mb-3 mb-sm-0" style="padding: 10px;width: 250px">
+                            <div>
+                                <a th:href="@{/donation/detail(donationId=${donation.id})}"
+                                   title="Click to go to another page">
+                                    <span th:text="${donation.name}"></span>
+                                </a>
+                            </div>
+                            <div>
+                                <span th:if="${donation.status == 1}">Mới tạo</span>
+                                <span th:if="${donation.status == 2}">Đang quyên góp</span>
+                                <span th:if="${donation.status == 3}">Kết thúc quyên góp</span>
+                                <span th:if="${donation.status == 4}">Đóng quyên góp</span>
+                            </div>
+                        </div>
+
+                        <div class="job-listing-location mb-3 mb-sm-0 custom-width w-10" style="padding: 10px;">
+                            Ngày bắt đầu<br>
+                            <strong th:text="${donation.startDate}"></strong><br>
+                        </div>
+                        <div class="job-listing-location mb-3 mb-sm-0 custom-width w-10" style="padding: 10px;">
+                            Ngày kết thúc<br>
+                            <strong th:text="${donation.endDate}"></strong><br>
+                        </div>
+                        <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25" style="padding: 10px;">
+                            <span class="icon-room"></span> <span th:text="${donation.organizationName}"></span><br>
+                            <strong th:text="${donation.phoneNumber}"></strong><br>
+                        </div>
+                        <div class="job-listing-meta custom-width w-20" th:if="${donation.status == 2}">
+                            <button style="margin-top: 20px" class="btn btn-primary py-2" data-toggle="modal"
+                                    th:data-target="'#exampleModal-' + ${donation.id}">Quyên góp
+                            </button>
+                            <!--                                <p style="margin-top: 20px;background-color: white !important;" class="btn py-2" th:if="${donation.status != 2}"><span style="color: white">Quyên góp</span></p>-->
+                        </div>
+                        <div class="job-listing-meta custom-width w-20" th:if="${donation.status != 2}">
+                            <!--                                <p style="margin-top: 20px" class="btn btn-primary py-2" data-toggle="modal">Quyên góp</p>-->
+                            <p style="margin-top: 20px;background-color: white !important;" class="btn py-2"><span
+                                    style="color: white">Quyên góp</span></p>
+                        </div>
+                        <div class="modal fade" th:id="'exampleModal-' + ${donation.id}" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Quyên góp: <span></span></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <form method="post" th:action="@{/saveUserDonation}" th:object="${newUserDonation}">
+                                        <!--                                             <input type="hidden" th:name="donationId" th:value="${donation.id}" />-->
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <label for="addname"
+                                                           class="col-form-label">Họ tên:</label>
+                                                    <input type="text" class="form-control"
+                                                           id="addname" name="name" placeholder=""
+                                                           th:value="${session.username}" readonly required>
+                                                    <label for="addname"
+                                                           class="col-form-label">Số tiền quyên góp:</label>
+                                                    <input type="number" class="form-control" placeholder=""
+                                                           id="addname" name="money" th:value="*{money}" required>
+                                                    <input type="hidden" class="form-control" placeholder=""
+                                                           id="addname" name="userId" th:value="${session.userId}">
+                                                    <input type="hidden" class="form-control" placeholder=""
+                                                           id="addname" name="idDonation" th:value="${donation.id}"
+                                                           required>
+                                                    <label for="addname"
+                                                           class="col-form-label">Lời nhắn:</label>
+                                                    <textarea rows="10" cols="3" class="form-control" name="text"
+                                                              th:field="*{text}">
+
+                                                </textarea>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    Đóng
+                                                </button>
+                                                <!--                                                                                                                <input type="hidden" th:name="donationId" th:text="${donation.id}" />-->
+                                                <button type="submit" data-toggle="modal" data-target="#exampleModal"
+                                                        class="btn btn-primary">Quyên góp
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!-- Modal -->
+                <script>
+                    function detail(id){
+                        window.location = '/donation/detail/' + id;
+                    }
+                </script>
+                <!-- Pagination -->
+                <nav th:if="${totalPages > 1}" aria-label="Donation Pagination">
+                    <ul class="pagination justify-content-end">
+
+                        <!-- Previous page link -->
+                        <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
+                            <a class="page-link" th:href="@{/home(page=${currentPage - 1})}">Previous</a>
+                        </li>
+
+                        <!-- Next page link -->
+                        <li class="page-item" th:classappend="${currentPage == totalPages - 1} ? 'disabled'">
+                            <a class="page-link" th:href="@{/home(page=${currentPage + 1})}">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+
+            </ul>
+
+        </div>
+    </section>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+<script th:src="@{/user/assets/js/donation-table.js}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+<script th:src="@{/admin1/assets/js/datatables-simple-demo.js}"></script>
+
+
+</body>
+</html>
