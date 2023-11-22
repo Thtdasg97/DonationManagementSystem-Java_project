@@ -24,8 +24,8 @@ Prerequisites
 
 Steps
 1. Clone the Repository
-git clone https://github.com/Thtdasg97/JobSearchPlatform-Java_project.git
-cd JobSearchPlatform-Java_project
+git clone https://github.com/Thtdasg97/DonationManagementSystem-Java_project
+cd DonationManagementSystem-Java_project
 
 2. Configure Database
 
